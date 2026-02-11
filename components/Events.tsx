@@ -1,108 +1,210 @@
+"use client";
 
-export const Events = () => {
+import { useState } from "react";
+import { motion, LayoutGroup, AnimatePresence } from "motion/react";
+import { cn } from "@/lib/utils";
+import { FluidExpandingGridProps } from "@/type";
+import { ITEMS } from "@/constant";
+
+export function Events({
+  items = ITEMS,
+  className,
+  id = "fluid-gallery",
+}: FluidExpandingGridProps) {
+  const [layout, setLayout] = useState(() => {
+    const ids = items.map((item) => item.id);
+    return {
+      row1: ids.slice(0, 2),
+      row2: ids.slice(2, Math.min(items.length, 4)),
+    };
+  });
+
+  const handleExpand = (id: string) => {
+    const inRow1 = layout.row1.includes(id);
+    const inRow2 = layout.row2.includes(id);
+
+    if (
+      (inRow1 && layout.row1.length === 1) ||
+      (inRow2 && layout.row2.length === 1)
+    )
+      return;
+
+    if (inRow1) {
+      const neighbor = layout.row1.find((i) => i !== id)!;
+      setLayout({
+        row1: [id],
+        row2: [neighbor, ...layout.row2.filter((i) => i !== neighbor)].slice(
+          0,
+          2,
+        ),
+      });
+    } else {
+      const neighbor = layout.row2.find((i) => i !== id)!;
+      setLayout({
+        row1: [neighbor, ...layout.row1.filter((i) => i !== neighbor)].slice(
+          0,
+          2,
+        ),
+        row2: [id],
+      });
+    }
+  };
+
   return (
-    <section className="py-32 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col gap-12">
-          {/* Header */}
-          <div className="flex flex-col gap-4">
-            <div className="inline-flex items-center gap-2">
-              <span className="text-[10px] tracking-[0.2em] font-bold uppercase text-black/40">EVENTS & HACKATHONS</span>
-              <div className="h-[1px] w-8 bg-black/10"></div>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-serif-display leading-tight tracking-tight text-[#16364d]">
-              Fuel your ambition with <br />
-              <span className="italic">collaborative intensity.</span>
-            </h2>
-          </div>
+    <>
+      <h1 className="text-4xl md:text-6xl text-[#16a34a] font-serif-display leading-tight tracking-tight">Events and other activities</h1>
+      <div
+        className={cn(
+          "w-full h-full flex items-center justify-center overflow-hidden py-12 not-prose",
+          className,
+        )}
+      >
+        <div className="w-full max-w-2xl px-6">
+          <LayoutGroup id={id}>
+            <motion.div
+              layout
+              className="grid grid-cols-2 grid-rows-2 gap-6 w-full h-[340px] sm:h-[540px]"
+            >
+              {items.map((item) => {
+                const isRow1 = layout.row1.includes(item.id);
+                const rowArr = isRow1 ? layout.row1 : layout.row2;
+                const isSelected = rowArr.length === 1 && rowArr[0] === item.id;
 
-          {/* Featured Upcoming Event */}
-          <div className="group relative overflow-hidden bg-black text-white p-8 md:p-16 rounded-[2.5rem] shadow-2xl">
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="flex flex-col gap-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 w-fit">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-                  </span>
-                  <span className="text-[10px] font-bold tracking-wider uppercase">Coming Soon: In-Person</span>
-                </div>
-                <h3 className="text-3xl md:text-5xl font-serif-display">Inner Circle Summit: <br />San Francisco 2024</h3>
-                <p className="text-white/60 text-lg font-light leading-relaxed max-w-md">
-                  Our flagship in-person gathering returns. A high-bandwidth weekend of deep-tech demos, closed-door strategy sessions, and the strongest networking in the ecosystem.
-                </p>
-                <button className="bg-white text-black px-8 py-4 rounded-full text-sm font-medium w-fit hover:scale-105 transition-transform">
-                  Request Invite
-                </button>
-              </div>
-              
-              <div className="hidden md:flex justify-end">
-                <div className="relative w-64 h-64 border border-white/10 rounded-full flex items-center justify-center animate-[spin_10s_linear_infinite]">
-                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-blue-400 rounded-full blur-sm"></div>
-                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-pink-400 rounded-full blur-sm"></div>
-                   <div className="w-32 h-32 border border-white/20 rounded-full"></div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Background Texture */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-transparent"></div>
-            </div>
-          </div>
+                const gridRow = isRow1 ? 1 : 2;
+                let gridColumn = "";
 
-          {/* Event Types Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <EventCard 
-              title="Practice Pitching"
-              description="Get raw, actionable feedback from industry veterans before you step into the boardroom. Refine your narrative in a high-trust environment."
-              tag="PITCH"
-              color="bg-blue-500/10"
-              textColor="text-blue-600"
-            />
-            <EventCard 
-              title="Build Hackathons"
-              description="Intensive 48-hour sprints focused on shipping production-ready prototypes. Tackle real-world challenges with direct access to our latest models."
-              tag="BUILD"
-              color="bg-pink-500/10"
-              textColor="text-pink-600"
-            />
-            <EventCard 
-              title="Networking Mixers"
-              description="Curated socials for builders, researchers, and founders. No awkward small talk—just high-signal conversations with the pioneers of AI."
-              tag="CONNECT"
-              color="bg-orange-400/10"
-              textColor="text-orange-600"
-            />
-          </div>
+                if (isSelected) {
+                  gridColumn = "1 / span 2";
+                } else {
+                  gridColumn = rowArr.indexOf(item.id) === 0 ? "1" : "2";
+                }
+
+                return (
+                  <motion.div
+                    key={item.id}
+                    layoutId={`${id}-${item.id}`}
+                    onClick={() => handleExpand(item.id)}
+                    style={{ gridRow, gridColumn } as any}
+                    className={cn(
+                      "relative cursor-pointer group w-full h-full",
+                      isSelected ? "z-30" : "z-10",
+                    )}
+                    transition={{
+                      layout: {
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 25,
+                      },
+                    }}
+                  >
+                    {/* Image */}
+                    <motion.div
+                      layoutId={`${id}-${item.id}-mask-wrapper`}
+                      className="absolute inset-0 overflow-hidden bg-zinc-100"
+                      style={{ borderRadius: 32 }}
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className={cn(
+                          "absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out",
+                          isSelected
+                            ? "object-[center_35%]"
+                            : "object-[center_50%]",
+                        )}
+                      />
+                      <motion.div
+                        layoutId={`${id}-${item.id}-mask`}
+                        className={cn(
+                          "absolute inset-0 transition-colors duration-700",
+                          isSelected ? "bg-black/10" : "bg-black/20",
+                        )}
+                      />
+                    </motion.div>
+
+                    {/* Content */}
+                    <motion.div
+                      layout="position"
+                      className="absolute inset-0 p-6 flex flex-col justify-end text-white z-10 select-none"
+                    >
+                      <motion.div layout="position" className="overflow-hidden">
+                        <motion.h3
+                          layout="position"
+                          className="text-2xl sm:text-3xl font-medium mb-1 tracking-tight"
+                        >
+                          {item.title}
+                        </motion.h3>
+
+                        <motion.p
+                          layout="position"
+                          className="text-xs sm:text-sm text-white/80 font-normal whitespace-nowrap"
+                        >
+                          {item.subtitle}
+                        </motion.p>
+                      </motion.div>
+
+                      {/* Expanded Extra Info */}
+                      <AnimatePresence>
+                        {isSelected && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.3 }}
+                            className="mt-4 space-y-3 text-xs sm:text-sm"
+                          >
+                            <div className="flex flex-wrap gap-2">
+                              <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur">
+                                {item.date}
+                              </span>
+
+                              <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur">
+                                {item.category}
+                              </span>
+
+                              <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur">
+                                {item.mode === "Online"
+                                  ? "Online"
+                                  : "In Person"}
+                              </span>
+                            </div>
+
+                            {item.link && (
+                              <a
+                                href={item.link}
+                                className="inline-block text-sm underline underline-offset-4"
+                              >
+                                View Event →
+                              </a>
+                            )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+
+                    {/* Overlay */}
+                    <motion.div
+                      layoutId={`${id}-${item.id}-overlay`}
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        borderRadius: 32,
+                        background:
+                          "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)",
+                      }}
+                    />
+
+                    <motion.div
+                      layoutId={`${id}-${item.id}-border`}
+                      className="absolute inset-0 border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"
+                      style={{ borderRadius: 32 }}
+                    />
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </LayoutGroup>
         </div>
       </div>
-    </section>
+    </>
   );
-};
-
-const EventCard: React.FC<{ 
-  title: string; 
-  description: string; 
-  tag: string; 
-  color: string;
-  textColor: string;
-}> = ({ title, description, tag, color, textColor }) => (
-  <div className="bg-white p-10 rounded-[2rem] border border-black/[0.03] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 flex flex-col gap-6">
-    <div className={`px-3 py-1 rounded-full ${color} w-fit`}>
-      <span className={`text-[9px] font-bold tracking-widest uppercase ${textColor}`}>{tag}</span>
-    </div>
-    <h4 className="text-2xl font-semibold tracking-tight">{title}</h4>
-    <p className="text-black/50 text-sm leading-relaxed font-light">
-      {description}
-    </p>
-    <div className="mt-auto pt-6 border-t border-black/[0.02]">
-      <a href="#" className="text-xs font-semibold uppercase tracking-widest hover:opacity-50 transition-opacity inline-flex items-center gap-2">
-        Learn more 
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-);
+}

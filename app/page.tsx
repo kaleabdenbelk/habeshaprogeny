@@ -8,6 +8,7 @@ import { News } from "@/components/News";
 import { ParticleCanvas } from "@/components/ParticleCanvas";
 import { Projects } from "@/components/Projects";
 import { pillars } from "@/constant";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <Navbar />
       {/* Hero */}
       <main className="bg-[#f4f1ea]">
-        <section className="pt-24 pb-5 px-6 flex flex-col items-center text-center max-w-5xl mx-auto">
+        <section className="pt-24 mb-16 pb-5 px-6 flex flex-col items-center text-center max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-8xl text-[#16364d] font-[instrument-serif]">
             Where Young Potential <br />
             meets Execution
@@ -148,7 +149,7 @@ export default function Home() {
                 <div className="bg-white p-8 md:p-12 rounded-[2rem] border border-black/5 shadow-2xl shadow-black/[0.02] relative z-10">
                   <div className="flex flex-col gap-10">
                     <div className="space-y-4">
-                      <div className="flex -space-x-3">
+                      {/* <div className="flex -space-x-3">
                         {[1, 2, 3, 4, 5].map((i) => (
                           <div
                             key={i}
@@ -164,7 +165,7 @@ export default function Home() {
                         <div className="w-12 h-12 rounded-full border-4 border-white bg-black text-white flex items-center justify-center text-[10px] font-bold">
                           +2k
                         </div>
-                      </div>
+                      </div> */}
                       <h3 className="font-semibold text-lg">
                         Inner Circle Benefits
                       </h3>
@@ -185,7 +186,7 @@ export default function Home() {
           </div>
         </section>
         {/* Events */}
-        <Events />
+        {/* <Events /> */}
         {/* Projects */}
         <Projects />
         {/* FAQ */}
@@ -199,15 +200,12 @@ export default function Home() {
         <footer className="py-20 px-6 max-w-7xl mx-auto border-t border-black/5 mt-20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-2">
-              <div className="flex gap-1">
-                <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                <div className="w-3 h-3 rounded-full bg-pink-500"></div>
-              </div>
-              <span className="font-semibold text-lg text-[#16364d] tracking-tight">
+              <Image src="/logo.png" alt="Logo" width={50} height={50} />
+              <span className="font-semibold text-2xl text-[#16364d] tracking-tight">
                 Habesha Progeny
               </span>
             </div>
-            <p className="text-sm text-black/50">
+            <p className="text-sm text-[#16a34a]">
               © 2024 Habesha Progeny. All rights reserved.
             </p>
           </div>

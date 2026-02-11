@@ -1,17 +1,17 @@
-import { NewsItem } from "@/type";
+import { NewsItem, Project, Pillar, EventItem } from "@/type";
 
-export const pillars = [
+export const pillars: Pillar[] = [
   {
     number: "1",
-    text: "We're human-first and heart-led. Connection is our fuel because when people feel something, they remember everything.",
+    text: "Build Real Things. We create projects, startups, and systems that move beyond theory.",
   },
   {
     number: "2",
-    text: "No fluff. No filler. Just deep brand knowledge and creativity that push boundaries and spark something real, with ambition, intention, and sharp delivery.",
+    text: "Grow Through Discipline. Talent matters, but consistency creates impact.",
   },
   {
     number: "3",
-    text: "Every detail's got a purpose. From planning to execution, we make it all click, so the moment can flow, resonate, and shine.",
+    text: "Rise Together. African ambition amplified through collaboration.",
   },
 ];
 
@@ -39,62 +39,135 @@ export const newsItems: NewsItem[] = [
   },
 ];
 
-export const projects = [
+export const projects: Project[] = [
   {
     title: "Neural Explorer",
     creator: "Dr. Elena Vance",
     creatorAvatar: "https://i.pravatar.cc/100?u=elena",
     description:
-      "A real-time 3D visualization of transformer attention layers, helping researchers debug model reasoning patterns.",
+      "A real-time 3D visualization of transformer attention layers.",
+    detailedDescription:
+      "Neural Explorer is a cutting-edge research tool designed to make the invisible visible. It provides a real-time, three-dimensional visualization of transformer attention layers, allowing AI researchers to peer into the 'black box' of model reasoning. By mapping high-dimensional vector spaces into an interactive 3D environment, researchers can identify anomalies in attention heads and debug complex reasoning patterns with unprecedented clarity.",
+    technologies: ["React", "Three.js", "PyTorch", "WebGL"],
+    features: [
+      "Real-time attention mapping",
+      "Interactive 3D model architecture",
+      "Per-layer analysis tools",
+      "Direct integration with HuggingFace models",
+    ],
     tag: "Research",
     image:
       "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/hpweb/neural-explorer",
   },
   {
     title: "Semantic Search Pro",
     creator: "Marcus Chen",
     creatorAvatar: "https://i.pravatar.cc/100?u=marcus",
-    description:
-      "Enterprise-grade vector search engine built for legal compliance, processing millions of documents in milliseconds.",
+    description: "Enterprise-grade vector search engine for legal compliance.",
+    detailedDescription:
+      "Semantic Search Pro redefines enterprise information retrieval. Built on the foundation of Cohere's latest embedding models, it enables legal and compliance teams to search through millions of documents using natural language instead of rigid keywords. The system maintains strict data privacy while providing millisecond response times, making it the go-to solution for large-scale litigation and regulatory reviews.",
+    technologies: ["Next.js", "Pinecone", "Cohere Embed", "TypeScript"],
+    features: [
+      "Multilingual semantic understanding",
+      "SOC2 compliant data processing",
+      "Automated document summarization",
+      "Advanced filtering and tagging",
+    ],
     tag: "Enterprise",
     image:
       "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=800",
+    link: "https://demo.hpweb.ai/semantic-search",
   },
   {
     title: "Aether Flow",
     creator: "Sarah Jenkins",
     creatorAvatar: "https://i.pravatar.cc/100?u=sarah",
-    description:
-      "Generative UI system that adapts in real-time to user sentiment and intent, creating truly personalized experiences.",
+    description: "Generative UI system that adapts to user sentiment.",
+    detailedDescription:
+      "Aether Flow represents the next evolution of user interface design. It is a generative UI system that doesn't just respond to clicks—it adapts to human emotion. By analyzing user sentiment and intent in real-time, Aether Flow dynamically adjusts layouts, color palettes, and component complexity to create a truly personalized digital experience that feels recursive and alive.",
+    technologies: ["React", "Framer Motion", "OpenAI API", "Tailwind CSS"],
+    features: [
+      "Sentiment-driven styling",
+      "Dynamic layout generation",
+      "Adaptive component library",
+      "Micro-interaction engine",
+    ],
     tag: "Design",
     image:
       "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800",
+    link: "https://aetherflow.design",
   },
 ];
 export const faqs = [
   {
     question: "What exactly is the Inner Circle?",
     answer:
-      "The Inner Circle is our exclusive tier for high-impact builders and enterprises. Members get dedicated architectural support, early access to next-gen models before public release, and invitations to private strategy sessions with our research team.",
+      "The Inner Circle is a committed group of builders inside HabeshaProgeny who take on deeper challenges, develop real projects, and help guide the community. It is not about status — it is about responsibility, discipline, and execution.",
   },
   {
-    question: "How do I start building with Cohere models?",
+    question: "How can I join the Inner Circle?",
     answer:
-      "Starting is simple. You can request a developer API key through our dashboard or sign up for one of our upcoming Build Hackathons. We provide extensive SDKs for Python, Node.js, and Go to help you integrate enterprise-grade AI in minutes.",
+      "Anyone can apply. Applicants are given a practical challenge to complete. We are not testing intelligence — we are looking for commitment, consistency, and the ability to follow through.",
   },
   {
-    question: "Are your events available for remote attendance?",
+    question: "Do I need to be in the Inner Circle to participate?",
     answer:
-      "While we believe in the high-bandwidth nature of in-person collaboration, many of our research seminars and practice pitching sessions are hosted in a hybrid format. Major hackathons are primarily in-person to maximize peer-to-peer learning.",
+      "No. The broader community is open to everyone. You can join events, collaborate on projects, and grow your skills without being part of the Inner Circle.",
   },
   {
-    question: "What kind of projects can I submit to the showcase?",
+    question: "How does startup support work?",
     answer:
-      "We look for projects that demonstrate 'Real-World Purpose.' Whether it's a breakthrough in medical research visualization, a highly efficient enterprise search tool, or a novel generative UI system, we want to see how you're using AI to move the needle.",
+      "We support founders in two ways. First, through technical collaboration where skilled members can directly contribute to building the project. Second, through community-driven support where founders connect with designers, developers, and marketers to move their ideas forward.",
   },
   {
-    question: "Is there a cost associated with the community?",
+    question: "Is there a cost to join HabeshaProgeny?",
     answer:
-      "The general Cohere community is free and open to everyone. Access to specific events, hackathons, and the Inner Circle may have specific requirements or selection criteria based on the nature of the engagement.",
+      "The community is open and accessible. Some specialized programs or future initiatives may have specific requirements, but our goal is to lower barriers and focus on contribution rather than fees.",
+  },
+];
+
+export const ITEMS: EventItem[] = [
+  {
+    id: "grassy",
+    title: "Highlands Tech Summit",
+    subtitle: "Golden fields under the giant",
+    description:
+      "A 2-day immersive tech summit covering AI, cloud systems, and startup scaling strategies.",
+    image:
+      "https://images.unsplash.com/photo-1755441172753-ac9b90dcd930?w=600&auto=format&fit=crop&q=60",
+    color: "#84cc16",
+    date: "March 12, 2026",
+    category: "Conference",
+    mode: "In Person",
+    link: "#",
+  },
+  {
+    id: "misty",
+    title: "Crimson Design Workshop",
+    subtitle: "A scarlet flame in the mountains",
+    description:
+      "Hands-on UI/UX workshop focused on motion design and modern web experiences.",
+    image:
+      "https://plus.unsplash.com/premium_photo-1667423711653-1ffb899172bc?w=600&auto=format&fit=crop&q=60",
+    color: "#10b981",
+    date: "April 2, 2026",
+    category: "Workshop",
+    mode: "Online",
+    link: "#",
+  },
+  {
+    id: "desert",
+    title: "Deep Sea AI Meetup",
+    subtitle: "Floating gracefully in the abyss",
+    description:
+      "A local developer meetup discussing LLMs, embeddings, and practical AI products.",
+    image:
+      "https://images.unsplash.com/photo-1757263005786-43d955f07fb1?w=600&auto=format&fit=crop&q=60",
+    color: "#0369a1",
+    date: "May 8, 2026",
+    category: "Meetup",
+    mode: "In Person",
+    link: "#",
   },
 ];
