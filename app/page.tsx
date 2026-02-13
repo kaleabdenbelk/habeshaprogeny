@@ -200,7 +200,7 @@ export default function Home() {
         <footer className="py-20 px-6 max-w-7xl mx-auto border-t border-black/5 mt-20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-2">
-              <Image src="/logo.png" alt="Logo" width={50} height={50} />
+              <Image src="/logoo.png" alt="Habesha progeny" width={50} height={50} />
               <span className="font-semibold text-2xl text-[#16364d] tracking-tight">
                 Habesha Progeny
               </span>
