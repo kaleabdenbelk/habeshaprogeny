@@ -1,21 +1,21 @@
-# Habesha Progeny
+# habesha progeny
 
-> Its a community that builds 
+> communit of developers
 
 This file is a machine-readable summary of the site structure for LLMs and Agents.
 
 ## Identity
-- **Brand**: habesha progeny
+- **Brand**: zendro
 - **Locale**: en-US
-- **Type**: marketing
+- **Type**: saas
 
 ## Navigation
-- [/](/)
+- [home](/)
 - [companies](/companies)
 - [news](/news)
 
 ## Content Types
-- None
+- blog
 
 ## Dynamic Data Sources
 - None

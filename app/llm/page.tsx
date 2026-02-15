@@ -11,7 +11,7 @@ export default async function LLMPage() {
       <h1>LLM Perspective</h1>
       <p>This page provides a machine-readable view of the site structure and dynamic data.</p>
       
-      <LLMJson config={config as any} />
+      <LLMJson config={config as any} mode="ldjson" />
       
       <section style={{ marginTop: '2rem' }}>
         <h2>Raw Configuration</h2>

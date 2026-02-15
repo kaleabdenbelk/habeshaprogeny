@@ -1,14 +1,14 @@
 {
   "identity": {
-    "name": "Habesha Progeny",
-    "description": "Its a community that builds ",
-    "brand": "habesha progeny",
+    "name": "habesha progeny",
+    "description": "communit of developers",
+    "brand": "zendro",
     "locale": "en-US"
   },
   "navigation": {
     "pages": [
       {
-        "label": "/",
+        "label": "home",
         "path": "/"
       },
       {
@@ -22,17 +22,19 @@
     ]
   },
   "business": {
-    "address": "Addis Ababa",
-    "email": "support@habeshaprogeny.tech",
+    "address": "addis ababa",
+    "email": "habesha@habeshaprogeny.tech",
     "twitter": "",
     "linkedin": ""
   },
   "seo": {
     "titlePattern": "habeshaprogeny.tech",
-    "descriptionPattern": "habeshaprogeny builds startups",
+    "descriptionPattern": "community of future nigga builders",
     "multilingual": true
   },
-  "contentTypes": [],
-  "type": "marketing",
+  "contentTypes": [
+    "blog"
+  ],
+  "type": "saas",
   "version": "1.2.0"
 }
