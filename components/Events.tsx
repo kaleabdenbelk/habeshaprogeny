@@ -1,210 +1,109 @@
 "use client";
 
-import { useState } from "react";
-import { motion, LayoutGroup, AnimatePresence } from "motion/react";
-import { cn } from "@/lib/utils";
-import { FluidExpandingGridProps } from "@/type";
 import { ITEMS } from "@/constant";
+import { ExpandableCard } from "@/components/ui/expandable-card";
 
-export function Events({
-  items = ITEMS,
-  className,
-  id = "fluid-gallery",
-}: FluidExpandingGridProps) {
-  const [layout, setLayout] = useState(() => {
-    const ids = items.map((item) => item.id);
-    return {
-      row1: ids.slice(0, 2),
-      row2: ids.slice(2, Math.min(items.length, 4)),
-    };
-  });
-
-  const handleExpand = (id: string) => {
-    const inRow1 = layout.row1.includes(id);
-    const inRow2 = layout.row2.includes(id);
-
-    if (
-      (inRow1 && layout.row1.length === 1) ||
-      (inRow2 && layout.row2.length === 1)
-    )
-      return;
-
-    if (inRow1) {
-      const neighbor = layout.row1.find((i) => i !== id)!;
-      setLayout({
-        row1: [id],
-        row2: [neighbor, ...layout.row2.filter((i) => i !== neighbor)].slice(
-          0,
-          2,
-        ),
-      });
-    } else {
-      const neighbor = layout.row2.find((i) => i !== id)!;
-      setLayout({
-        row1: [neighbor, ...layout.row1.filter((i) => i !== neighbor)].slice(
-          0,
-          2,
-        ),
-        row2: [id],
-      });
-    }
-  };
-
+export const Events = () => {
   return (
-    <>
-      <h1 className="text-4xl md:text-6xl text-[#16a34a] font-serif-display leading-tight tracking-tight">Events and other activities</h1>
-      <div
-        className={cn(
-          "w-full h-full flex items-center justify-center overflow-hidden py-12 not-prose",
-          className,
-        )}
-      >
-        <div className="w-full max-w-2xl px-6">
-          <LayoutGroup id={id}>
-            <motion.div
-              layout
-              className="grid grid-cols-2 grid-rows-2 gap-6 w-full h-[340px] sm:h-[540px]"
-            >
-              {items.map((item) => {
-                const isRow1 = layout.row1.includes(item.id);
-                const rowArr = isRow1 ? layout.row1 : layout.row2;
-                const isSelected = rowArr.length === 1 && rowArr[0] === item.id;
+    <section id="events" className="py-32 px-6 bg-[#f4f1ea] scroll-mt-24">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col gap-16">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="flex flex-col gap-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="text-[10px] tracking-[0.2em] font-bold uppercase text-black/40">
+                  EVENTS & HACKATHONS
+                </span>
+                <div className="h-[1px] w-8 bg-black/10"></div>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-serif-display leading-[0.9] tracking-[-0.05em] text-[#16364d]">
+                Fuel your <br />
+                <span className="italic text-[#16364d]">ambition.</span>
+              </h2>
+            </div>
+            <button className="text-sm font-semibold uppercase tracking-widest border-b-2 border-black pb-1 hover:opacity-50 transition-opacity w-fit text-[#16364d]">
+              View all events
+            </button>
+          </div>
 
-                const gridRow = isRow1 ? 1 : 2;
-                let gridColumn = "";
+          {/* Events Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {ITEMS.map((item, index) => (
+              <ExpandableCard
+                key={index}
+                title={item.title}
+                src={item.image}
+                description={item.category}
+                className="group border border-black/[0.03] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-700 rounded-[2.5rem] p-4 bg-white"
+                classNameExpanded="bg-white dark:bg-zinc-950 sm:rounded-[2.5rem]"
+              >
+                <div className="flex flex-col gap-8 py-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#16364d]/5 flex items-center justify-center text-[#16364d]">
+                      <span className="text-xs font-bold uppercase tracking-widest">
+                        {item.mode === "Online" ? "ON" : "IP"}
+                      </span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-bold text-black/40 uppercase tracking-widest">
+                        Date & Meta
+                      </span>
+                      <span className="text-sm font-medium text-black">
+                        {item.date} • {item.mode}
+                      </span>
+                    </div>
+                  </div>
 
-                if (isSelected) {
-                  gridColumn = "1 / span 2";
-                } else {
-                  gridColumn = rowArr.indexOf(item.id) === 0 ? "1" : "2";
-                }
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold text-black">
+                      About the event
+                    </h4>
+                    <p className="text-black/60 text-base leading-relaxed font-light">
+                      {item.description}
+                    </p>
+                  </div>
 
-                return (
-                  <motion.div
-                    key={item.id}
-                    layoutId={`${id}-${item.id}`}
-                    onClick={() => handleExpand(item.id)}
-                    style={{ gridRow, gridColumn } as any}
-                    className={cn(
-                      "relative cursor-pointer group w-full h-full",
-                      isSelected ? "z-30" : "z-10",
-                    )}
-                    transition={{
-                      layout: {
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 25,
-                      },
-                    }}
-                  >
-                    {/* Image */}
-                    <motion.div
-                      layoutId={`${id}-${item.id}-mask-wrapper`}
-                      className="absolute inset-0 overflow-hidden bg-zinc-100"
-                      style={{ borderRadius: 32 }}
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold text-black">
+                      Details
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-black/5 rounded-full text-[10px] font-bold uppercase tracking-wider text-black/60">
+                        {item.category}
+                      </span>
+                      <span className="px-3 py-1 bg-black/5 rounded-full text-[10px] font-bold uppercase tracking-wider text-black/60">
+                        {item.subtitle}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-black/[0.05] mt-4">
+                    <a
+                      href={item.link}
+                      className="inline-flex items-center gap-2 bg-[#16364d] text-white px-8 py-3 rounded-full text-sm font-semibold hover:scale-105 transition-transform"
                     >
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className={cn(
-                          "absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out",
-                          isSelected
-                            ? "object-[center_35%]"
-                            : "object-[center_50%]",
-                        )}
-                      />
-                      <motion.div
-                        layoutId={`${id}-${item.id}-mask`}
-                        className={cn(
-                          "absolute inset-0 transition-colors duration-700",
-                          isSelected ? "bg-black/10" : "bg-black/20",
-                        )}
-                      />
-                    </motion.div>
-
-                    {/* Content */}
-                    <motion.div
-                      layout="position"
-                      className="absolute inset-0 p-6 flex flex-col justify-end text-white z-10 select-none"
-                    >
-                      <motion.div layout="position" className="overflow-hidden">
-                        <motion.h3
-                          layout="position"
-                          className="text-2xl sm:text-3xl font-medium mb-1 tracking-tight"
-                        >
-                          {item.title}
-                        </motion.h3>
-
-                        <motion.p
-                          layout="position"
-                          className="text-xs sm:text-sm text-white/80 font-normal whitespace-nowrap"
-                        >
-                          {item.subtitle}
-                        </motion.p>
-                      </motion.div>
-
-                      {/* Expanded Extra Info */}
-                      <AnimatePresence>
-                        {isSelected && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 15 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.3 }}
-                            className="mt-4 space-y-3 text-xs sm:text-sm"
-                          >
-                            <div className="flex flex-wrap gap-2">
-                              <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur">
-                                {item.date}
-                              </span>
-
-                              <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur">
-                                {item.category}
-                              </span>
-
-                              <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur">
-                                {item.mode === "Online"
-                                  ? "Online"
-                                  : "In Person"}
-                              </span>
-                            </div>
-
-                            {item.link && (
-                              <a
-                                href={item.link}
-                                className="inline-block text-sm underline underline-offset-4"
-                              >
-                                View Event →
-                              </a>
-                            )}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-
-                    {/* Overlay */}
-                    <motion.div
-                      layoutId={`${id}-${item.id}-overlay`}
-                      className="absolute inset-0 pointer-events-none"
-                      style={{
-                        borderRadius: 32,
-                        background:
-                          "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)",
-                      }}
-                    />
-
-                    <motion.div
-                      layoutId={`${id}-${item.id}-border`}
-                      className="absolute inset-0 border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"
-                      style={{ borderRadius: 32 }}
-                    />
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </LayoutGroup>
+                      Register Now
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </ExpandableCard>
+            ))}
+          </div>
         </div>
       </div>
-    </>
+    </section>
   );
-}
+};

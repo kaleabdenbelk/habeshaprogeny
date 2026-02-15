@@ -32,9 +32,10 @@ export const Navbar = () => {
       <div className="hidden lg:flex items-center gap-8">
         <NavLink label="Mission" href="#mission" />
         <NavLink label="Values" href="#values" />
-        <NavLink label="Insights" href="#news" />
+        <NavLink label="Insights" href="/news" />
         <NavLink label="Community" href="#community" />
         <NavLink label="Projects" href="#projects" />
+        <NavLink label="Companies" href="/companies" />
         <NavLink label="FAQ" href="#faq" />
       </div>
 
@@ -59,11 +60,36 @@ export const Navbar = () => {
             className="absolute top-full left-0 w-full bg-[#f4f1ea] border-b border-black/[0.03] lg:hidden"
           >
             <div className="flex flex-col px-6 py-6 gap-6">
-              <NavLink label="Mission" href="#mission" onClick={() => setOpen(false)} />
-              <NavLink label="Values" href="#values" onClick={() => setOpen(false)} />
-              <NavLink label="Insights" href="#news" onClick={() => setOpen(false)} />
-              <NavLink label="Community" href="#community" onClick={() => setOpen(false)} />
-              <NavLink label="Projects" href="#projects" onClick={() => setOpen(false)} />
+              <NavLink
+                label="Mission"
+                href="#mission"
+                onClick={() => setOpen(false)}
+              />
+              <NavLink
+                label="Values"
+                href="#values"
+                onClick={() => setOpen(false)}
+              />
+              <NavLink
+                label="Insights"
+                href="/news"
+                onClick={() => setOpen(false)}
+              />
+              <NavLink
+                label="Community"
+                href="#community"
+                onClick={() => setOpen(false)}
+              />
+              <NavLink
+                label="Projects"
+                href="#projects"
+                onClick={() => setOpen(false)}
+              />
+              <NavLink
+                label="Companies"
+                href="/companies"
+                onClick={() => setOpen(false)}
+              />
               <NavLink label="FAQ" href="#faq" onClick={() => setOpen(false)} />
             </div>
           </motion.div>

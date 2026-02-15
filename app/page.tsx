@@ -12,12 +12,12 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen">
       <Navbar />
       {/* Hero */}
       <main className="bg-[#f4f1ea]">
         <section className="pt-24 mb-16 pb-5 px-6 flex flex-col items-center text-center max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-8xl text-[#16364d] font-[instrument-serif]">
+          <h1 className="italic text-5xl md:text-8xl text-[#16364d] font-serif-display tracking-[-0.06em] leading-[0.9]">
             Where Young Potential <br />
             meets Execution
           </h1>
@@ -109,7 +109,7 @@ export default function Home() {
                   <div className="h-[1px] w-8 bg-black/10"></div>
                 </div>
 
-                <h2 className="text-5xl md:text-7xl font-serif-display leading-tight tracking-tight text-[#16364d]">
+                <h2 className="text-5xl italic md:text-7xl font-serif-display leading-[0.9] tracking-[-0.05em] text-[#16364d]">
                   A home for every <br />
                   <span className="italic text-[#16364d]">pioneer.</span>
                 </h2>
@@ -117,8 +117,8 @@ export default function Home() {
                 <p className="text-xl text-black/60 max-w-xl leading-relaxed font-light">
                   We’re creating more than just a community; we’re fostering an
                   ecosystem where every developer, researcher, and builder feels
-                  at home. Join a global collective dedicated to shaping the next generation with
-                  integrity and human insight.
+                  at home. Join a global collective dedicated to shaping the
+                  next generation with integrity and human insight.
                 </p>
 
                 <div className="flex flex-wrap gap-4 mt-4">
@@ -170,9 +170,9 @@ export default function Home() {
                         Inner Circle Benefits
                       </h3>
                       <p className="text-sm text-black/50 leading-relaxed">
-                        Get exclusive access to beta features,
-                        private networking events, and direct architectural
-                        support from our core engineering team.
+                        Get exclusive access to beta features, private
+                        networking events, and direct architectural support from
+                        our core engineering team.
                       </p>
                     </div>
                   </div>
@@ -186,7 +186,7 @@ export default function Home() {
           </div>
         </section>
         {/* Events */}
-        {/* <Events /> */}
+        <Events />
         {/* Projects */}
         <Projects />
         {/* FAQ */}
@@ -200,7 +200,12 @@ export default function Home() {
         <footer className="py-20 px-6 max-w-7xl mx-auto border-t border-black/5 mt-20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-2">
-              <Image src="/logoo.png" alt="Habesha progeny" width={50} height={50} />
+              <Image
+                src="/logoo.png"
+                alt="Habesha progeny"
+                width={50}
+                height={50}
+              />
               <span className="font-semibold text-2xl text-[#16364d] tracking-tight">
                 Habesha Progeny
               </span>

@@ -1,8 +1,14 @@
 export interface NewsItem {
+  id: string;
+  slug: string;
   title: string;
   author: string;
   date: string;
+  category: string;
   image: string;
+  excerpt: string;
+  content: string;
+  isUpcomingLaunch?: boolean;
 }
 
 export interface Pillar {
@@ -23,8 +29,6 @@ export interface Project {
   link: string;
 }
 
-
-
 export interface FluidExpandingGridProps {
   items?: EventItem[];
   className?: string;
@@ -43,3 +47,19 @@ export type EventItem = {
   mode: "Online" | "In Person";
   link?: string;
 };
+
+export interface Company {
+  name: string;
+  slug: string;
+  logo: string;
+  description: string;
+  detailedDescription: string;
+  industry: string;
+  location: string;
+  website: string;
+  founded: string;
+  teamSize: string;
+  technologies: string[];
+  features: string[];
+  image: string;
+}

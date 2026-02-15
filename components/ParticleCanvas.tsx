@@ -17,9 +17,9 @@ export const ParticleCanvas = () => {
 
   const colors = [
     'rgba(59, 130, 246, 0.6)', // Blue
-    'rgba(236, 72, 153, 0.6)', // Pink
-    'rgba(251, 146, 60, 0.6)', // Orange
-    'rgba(139, 92, 246, 0.6)', // Violet
+    'rgba(72, 236, 135, 0.6)', // Pink
+    'rgba(79, 60, 251, 0.6)', // Orange
+    'rgba(246, 139, 92, 0.6)', // Violet
   ];
 
   useEffect(() => {

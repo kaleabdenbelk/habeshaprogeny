@@ -1,4 +1,4 @@
-import { NewsItem, Project, Pillar, EventItem } from "@/type";
+import { NewsItem, Project, Pillar, EventItem, Company } from "@/type";
 
 export const pillars: Pillar[] = [
   {
@@ -17,25 +17,56 @@ export const pillars: Pillar[] = [
 
 export const newsItems: NewsItem[] = [
   {
+    id: "north-ai",
+    slug: "north-ai-enterprise",
     title: "Introducing North: The next era of enterprise AI",
     author: "COHERE TEAM",
     date: "AUG 06, 2025",
+    category: "AI",
     image:
       "https://images.unsplash.com/photo-1620712943543-bcc4628c7189?auto=format&fit=crop&q=80&w=800",
+    excerpt:
+      "North represents a paradigm shift in how enterprises interact with large language models.",
+    content: "Full content about North enterprise AI goes here...",
   },
   {
+    id: "ai-automation",
+    slug: "defining-ai-automation",
     title: "Defining AI automation: A new kind of workplace",
     author: "COHERE TEAM",
     date: "JUN 13, 2025",
+    category: "Workplace",
     image:
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
+    excerpt:
+      "How automation is reshaping the modern workplace for better or worse.",
+    content: "Full content about AI automation goes here...",
   },
   {
+    id: "secure-ai",
+    slug: "secure-ai-critical-systems",
     title: "Bringing secure AI to critical systems",
     author: "COHERE TEAM",
     date: "JUN 30, 2025",
+    category: "Security",
     image:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=800",
+    excerpt:
+      "Security is non-negotiable when deploying AI in critical infrastructure.",
+    content: "Full content about secure AI goes here...",
+  },
+  {
+    id: "launch-2026",
+    slug: "upcoming-hp-launch-2026",
+    title: "Ecosystem Alpha: Our biggest launch yet",
+    author: "HP CORE",
+    date: "OCT 15, 2025",
+    category: "Launch",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+    excerpt: "Get ready for the definitive platform for African builders.",
+    content: "Detailed information about the upcoming project launch...",
+    isUpcomingLaunch: true,
   },
 ];
 
@@ -169,5 +200,74 @@ export const ITEMS: EventItem[] = [
     category: "Meetup",
     mode: "In Person",
     link: "#",
+  },
+];
+
+export const companies: Company[] = [
+  {
+    name: "Aetheria Labs",
+    slug: "aetheria-labs",
+    logo: "https://api.dicebear.com/7.x/initials/svg?seed=AL&backgroundColor=16364d&fontColor=57ff8f",
+    description: "Designing the future of human-AI collaboration.",
+    detailedDescription:
+      "Aetheria Labs is at the forefront of generative UI and adaptive systems. Our mission is to bridge the gap between human intuition and machine intelligence through seamless, fluid interfaces that evolve with the user's intent. Founded by some of the most innovative minds in Ethiopia's tech scene, we are building tools that empower creators to think beyond traditional constraints.",
+    industry: "AI & Design",
+    location: "Addis Ababa, Ethiopia",
+    website: "https://aetheria.labs",
+    founded: "2024",
+    teamSize: "15-20",
+    technologies: ["React", "Rust", "PyTorch", "WebGL"],
+    features: [
+      "Generative UI Frameworks",
+      "Adaptive Collaboration Tools",
+      "Real-time Sentiment Analysis",
+      "Cross-platform Syncing",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    name: "Nebula Systems",
+    slug: "nebula-systems",
+    logo: "https://api.dicebear.com/7.x/initials/svg?seed=NS&backgroundColor=16364d&fontColor=57ff8f",
+    description: "Distributed infrastructure for the decentralized web.",
+    detailedDescription:
+      "Nebula Systems provides the backbone for the next generation of decentralized applications. Our focus is on high-performance node infrastructure and secure data routing. We believe in a web that is open, resilient, and owned by its participants. Our infrastructure supports thousands of transactions per second while maintaining the highest levels of security and uptime.",
+    industry: "Web3 & Cloud",
+    location: "Nairobi, Kenya",
+    website: "https://nebula.systems",
+    founded: "2023",
+    teamSize: "30-50",
+    technologies: ["Go", "Kubernetes", "Ethereum", "gRPC"],
+    features: [
+      "High-speed Node Clusters",
+      "Automated Health Monitoring",
+      "Decentralized Storage Solutions",
+      "Smart Contract Auditing",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    name: "Solaris Energy",
+    slug: "solaris-energy",
+    logo: "https://api.dicebear.com/7.x/initials/svg?seed=SE&backgroundColor=16364d&fontColor=57ff8f",
+    description: "Clean energy solutions powered by predictive AI.",
+    detailedDescription:
+      "Solaris Energy is revolutionizing how we harness renewable power. By integrating predictive AI models with solar grid management, we optimize energy distribution and storage in real-time. Our goal is to provide affordable, sustainable energy to millions of homes across the continent, reducing carbon footprints while ensuring energy security.",
+    industry: "CleanTech",
+    location: "Cape Town, South Africa",
+    website: "https://solaris.energy",
+    founded: "2022",
+    teamSize: "10-15",
+    technologies: ["Python", "TensorFlow", "IoT", "AWS"],
+    features: [
+      "Predictive Load Balancing",
+      "Smart Grid Integration",
+      "Solar Panel Optimization",
+      "Consumer Energy Dashboards",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1466611653911-954ffaa137a8?auto=format&fit=crop&q=80&w=800",
   },
 ];

@@ -1,0 +1,38 @@
+{
+  "identity": {
+    "name": "Habesha Progeny",
+    "description": "Its a community that builds ",
+    "brand": "habesha progeny",
+    "locale": "en-US"
+  },
+  "navigation": {
+    "pages": [
+      {
+        "label": "/",
+        "path": "/"
+      },
+      {
+        "label": "companies",
+        "path": "/companies"
+      },
+      {
+        "label": "news",
+        "path": "/news"
+      }
+    ]
+  },
+  "business": {
+    "address": "Addis Ababa",
+    "email": "support@habeshaprogeny.tech",
+    "twitter": "",
+    "linkedin": ""
+  },
+  "seo": {
+    "titlePattern": "habeshaprogeny.tech",
+    "descriptionPattern": "habeshaprogeny builds startups",
+    "multilingual": true
+  },
+  "contentTypes": [],
+  "type": "marketing",
+  "version": "1.2.0"
+}
